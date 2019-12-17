@@ -21,13 +21,36 @@ public class App
         Session sesion = sesionFactory.openSession();
         sesion.beginTransaction();
         
-        Alojamiento alojamiento = new Alojamiento();
-        alojamiento.setId(1);
-        alojamiento.setNombre("Aloj1");
+        //ALOJAMIENTOS
+        Alojamientos alojamientos = new Alojamientos();
+        alojamientos.setCodAlojamiento(1);
+        alojamientos.setNombre("Nombre Alojamiento 1");
+        alojamientos.setDescripcion("Descripción 1");
+        alojamientos.setTipo("Tipo alojamiento1");
+        alojamientos.setLocalizacion("Localizacion1");
+        alojamientos.setTelefono("666333111");
+        alojamientos.setDireccion("Dirección alojamiento1");
+        alojamientos.setLocalidad("Localidad1");
+        alojamientos.setEmail("email1");
+        alojamientos.setWeb("web1");
+        alojamientos.setCapacidad(100);
         
-        sesion.save(alojamiento);
+        sesion.save(alojamientos);
+        sesion.getTransaction().commit();
+   
+        //USUARIOS
+        Usuarios usuarios = new Usuarios();
+        usuarios.setDni("22222222W");
+        usuarios.setNombre("Nombre1");
+        usuarios.setApellidos("Apellido1");
+        usuarios.setContrasena("Contrasena1");
+        usuarios.setTelefono(666333221);
+        usuarios.setTipoUsuario("Normal");
+        
+        sesion.save(usuarios);
         sesion.getTransaction().commit();
         sesionFactory.close();
         
     }
 }
+

@@ -7,7 +7,7 @@
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.username">grupoAlojamientos</property>
         <property name="hibernate.connection.password">123456</property>
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.101.24/alojamientos?serverTimezone=UTC</property>
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.0.7/alojamientos?serverTimezone=UTC</property>
 
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -18,7 +18,8 @@
 
         
         <!-- Mapeo de las clases  -->
-        <mapping class="alojamientos.appdatosA.Alojamiento"></mapping>
+        <mapping class="alojamientos.appdatosA.Alojamientos"></mapping>
+          <mapping class="alojamientos.appdatosA.Usuarios"></mapping>
         
     </session-factory>
 </hibernate-configuration>
