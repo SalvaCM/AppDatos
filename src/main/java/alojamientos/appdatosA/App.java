@@ -48,9 +48,21 @@ public class App
         
         sesion.save(usuarios);
         
+        //RESERVAS
+        Reservas reservas = new Reservas();
+        reservas.setCodReserva(1);
+        reservas.setCodAlojamiento(1);
+        reservas.setCodUsuario(1);
+        reservas.setFechaRealizada(Fechas.mostrarFechaActual());
+        //reservas.setFechaEntrada(fechaEntrada);
+        // reservas.setFechaSalida(fechaSalida);
+        
+       	sesion.save(reservas);
         //se comitean los cambios y se cierra la sesión
         sesion.getTransaction().commit();
         sesionFactory.close();
+        
+        
         
     }
 }

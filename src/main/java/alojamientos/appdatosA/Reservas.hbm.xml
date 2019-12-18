@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-dic-2019 8:43:49 by Hibernate Tools 3.5.0.Final -->
+<hibernate-mapping>
+    <class name="alojamientos.appdatosA.Reservas" table="RESERVAS">
+        <id name="codReserva" type="int">
+            <column name="CODRESERVA" />
+            <generator class="assigned" />
+        </id>
+        <property name="codAlojamiento" type="java.lang.String">
+            <column name="CODALOJAMIENTO" />
+        </property>
+        <property name="codUsuario" type="java.lang.String">
+            <column name="CODUSUARIO" />
+        </property>
+        <property name="fechaRealizada" type="java.util.Date">
+            <column name="FECHAREALIZADA" />
+        </property>
+        <property name="fechaEntrada" type="java.util.Date">
+            <column name="FECHAENTRADA" />
+        </property>
+        <property name="fechaSalida" type="java.util.Date">
+            <column name="FECHASALIDA" />
+        </property>
+    </class>
+</hibernate-mapping>

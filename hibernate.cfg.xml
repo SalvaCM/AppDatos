@@ -20,6 +20,7 @@
         <!-- Mapeo de las clases  -->
         <mapping class="alojamientos.appdatosA.Alojamientos"></mapping>
         <mapping class="alojamientos.appdatosA.Usuarios"></mapping>
+        <mapping class="alojamientos.appdatosA.Reservas"></mapping>
         
     </session-factory>
 </hibernate-configuration>
