@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.*;
+import java.util.ArrayList;
+
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -87,5 +89,54 @@ public class CargaXml {
 			e.printStackTrace();
 			System.out.println(e);
 		    }
-		  }
+	}
+	
+public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<Alojamientos>listaAlojamientos) {
+		
+		try {
+
+			File fXmlFile = new File(ruta);
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(fXmlFile);
+					
+			doc.getDocumentElement().normalize();
+
+			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+					
+			NodeList nList = doc.getElementsByTagName("row");
+					
+			System.out.println("----------------------------");
+
+			for (int temp = 0; temp < nList.getLength(); temp++) {
+				
+				Node nNode = nList.item(temp);
+						
+				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+						
+				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+					
+					Element eElement = (Element) nNode;
+					
+					System.out.println(" Linea : " + eElement.getAttribute("num"));
+					System.out.println(" Pagina web : " + eElement.getElementsByTagName("municipality").item(0).getTextContent());
+					
+					Alojamientos alojamiento = new Alojamientos();
+					alojamiento.setCodAlojamiento(temp);
+					alojamiento.setNombre("Alba");
+					
+					listaAlojamientos.add(alojamiento);
+
+				}
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e);
+		    }
+		
+		return listaAlojamientos;
+	}
+	
 }
