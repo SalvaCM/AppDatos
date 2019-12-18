@@ -53,14 +53,14 @@ public class App
 	        	//ALOJAMIENTOS
 	        Alojamientos alojamientos = new Alojamientos();
 	        alojamientos.setCodAlojamiento(i);
-	        alojamientos.setNombre("Nombre Alojamiento 1");
-	        alojamientos.setDescripcion("Descripción 1");
-	        alojamientos.setTipo("Tipo alojamiento1");
-	        alojamientos.setLocalizacion("Localizacion1");
-	        alojamientos.setTelefono("666333111");
-	        alojamientos.setDireccion("Dirección alojamiento1");
-	        alojamientos.setLocalidad("Localidad1");
-	        alojamientos.setEmail(listaAlojamientos.get(i).getWeb());
+	        alojamientos.setNombre(listaAlojamientos.get(i).getNombre());
+	        alojamientos.setDescripcion(listaAlojamientos.get(i).getDescripcion());
+	        alojamientos.setTipo("Aloc");
+	        alojamientos.setLocalizacion(listaAlojamientos.get(i).getLocalizacion());
+	        alojamientos.setTelefono(listaAlojamientos.get(i).getTelefono());
+	        alojamientos.setDireccion(listaAlojamientos.get(i).getDireccion());
+	        alojamientos.setLocalidad(listaAlojamientos.get(i).getLocalidad());
+	        alojamientos.setEmail(listaAlojamientos.get(i).getEmail());
 	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
 	        alojamientos.setCapacidad(100);
 	        

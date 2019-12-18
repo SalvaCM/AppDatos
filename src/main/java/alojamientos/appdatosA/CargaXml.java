@@ -115,18 +115,74 @@ public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<A
 				System.out.println("\nCurrent Element :" + nNode.getNodeName());
 						
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
+					
 					
 					Element eElement = (Element) nNode;
-					
-					System.out.println(" Linea : " + eElement.getAttribute("num"));
-					System.out.println(" Pagina web : " + eElement.getElementsByTagName("municipality").item(0).getTextContent());
-					
 					Alojamientos alojamiento = new Alojamientos();
 					alojamiento.setCodAlojamiento(temp);
-					alojamiento.setNombre("Alba");
+					try {
+						alojamiento.setDescripcion(eElement.getElementsByTagName("turismdescription").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setDescripcion("Descripcion no disponible");
+					}
+					try {
+						alojamiento.setNombre(eElement.getElementsByTagName("documentname").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						
+						alojamiento.setNombre("Nombre no disponible");
+					}
+					try {
+						alojamiento.setLocalizacion(eElement.getElementsByTagName("municipality").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setLocalizacion("Localizacion no disponible");
+					}
+					try {
+						alojamiento.setTelefono(eElement.getElementsByTagName("phone").item(0).getTextContent());
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setTelefono("Telefono no disponible");
+					}
+					try {
+						
+						alojamiento.setDireccion(eElement.getElementsByTagName("address").item(0).getTextContent());
+					}
+					catch(NullPointerException e1) {	
+						
+						alojamiento.setDireccion("Direccion no disponible");
+					}
+					try {
+						alojamiento.setLocalidad(eElement.getElementsByTagName("territory").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setLocalidad("Localidad no disponibles");
+					}
+					try {
+						alojamiento.setEmail(eElement.getElementsByTagName("email").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setEmail(" Correo no disponible");
+					}
+					try {
+						alojamiento.setWeb(eElement.getElementsByTagName("web").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setWeb(" Web no disponibles");
+					}
+				
+					alojamiento.setCodAlojamiento(temp);
 					
-					alojamiento.setWeb(eElement.getElementsByTagName("municipality").item(0).getTextContent());
+					//alojamiento.setNombre("Alba");
+					
+					//alojamiento.setWeb(eElement.getElementsByTagName("municipality").item(0).getTextContent());
 					
 					listaAlojamientos.add(alojamiento);
 
