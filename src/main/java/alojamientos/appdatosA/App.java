@@ -18,6 +18,7 @@ public class App
         
         CargaXml xml = new CargaXml();
         xml.descargaXml();
+        xml.leerXml("archivos/apartamentos.xml");
         Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
         SessionFactory sesionFactory = config.buildSessionFactory();
         Session sesion = sesionFactory.openSession();
