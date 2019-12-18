@@ -16,6 +16,8 @@ public class App
     {
         System.out.println( "Cargando..............................................................." );
         
+        CargaXml xml = new CargaXml();
+        xml.descargaXml();
         Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
         SessionFactory sesionFactory = config.buildSessionFactory();
         Session sesion = sesionFactory.openSession();
