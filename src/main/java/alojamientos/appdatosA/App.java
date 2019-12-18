@@ -60,8 +60,8 @@ public class App
 	        alojamientos.setTelefono("666333111");
 	        alojamientos.setDireccion("Dirección alojamiento1");
 	        alojamientos.setLocalidad("Localidad1");
-	        alojamientos.setEmail("benjas2");
-	        alojamientos.setWeb("web1");
+	        alojamientos.setEmail(listaAlojamientos.get(i).getWeb());
+	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
 	        alojamientos.setCapacidad(100);
 	        
 	        sesion.save(alojamientos);

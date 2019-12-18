@@ -126,6 +126,8 @@ public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<A
 					alojamiento.setCodAlojamiento(temp);
 					alojamiento.setNombre("Alba");
 					
+					alojamiento.setWeb(eElement.getElementsByTagName("municipality").item(0).getTextContent());
+					
 					listaAlojamientos.add(alojamiento);
 
 				}
