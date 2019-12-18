@@ -22,37 +22,37 @@ public class App
         sesion.beginTransaction();
         
         //ALOJAMIENTOS
-        Alojamientos alojamientos = new Alojamientos();
-        alojamientos.setCodAlojamiento(1);
-        alojamientos.setNombre("Nombre Alojamiento 1");
-        alojamientos.setDescripcion("Descripción 1");
-        alojamientos.setTipo("Tipo alojamiento1");
-        alojamientos.setLocalizacion("Localizacion1");
-        alojamientos.setTelefono("666333111");
-        alojamientos.setDireccion("Dirección alojamiento1");
-        alojamientos.setLocalidad("Localidad1");
-        alojamientos.setEmail("email1");
-        alojamientos.setWeb("web1");
-        alojamientos.setCapacidad(100);
+        Alojamientos alojamiento1 = new Alojamientos();
+        alojamiento1.setCodAlojamiento(1);
+        alojamiento1.setNombre("Nombre Alojamiento 1");
+        alojamiento1.setDescripcion("Descripción 1");
+        alojamiento1.setTipo("Tipo alojamiento1");
+        alojamiento1.setLocalizacion("Localizacion1");
+        alojamiento1.setTelefono("666333111");
+        alojamiento1.setDireccion("Dirección alojamiento1");
+        alojamiento1.setLocalidad("Localidad1");
+        alojamiento1.setEmail("email1");
+        alojamiento1.setWeb("web1");
+        alojamiento1.setCapacidad(100);
         
-        sesion.save(alojamientos);
+        sesion.save(alojamiento1);
        
         //USUARIOS
-        Usuarios usuarios = new Usuarios();
-        usuarios.setDni("22222222W");
-        usuarios.setNombre("Nombre1");
-        usuarios.setApellidos("Apellido1");
-        usuarios.setContrasena("Contrasena1");
-        usuarios.setTelefono(666333221);
-        usuarios.setTipoUsuario("Normal");
+        Usuarios usuario1 = new Usuarios();
+        usuario1.setDni("22222222W");
+        usuario1.setNombre("Nombre1");
+        usuario1.setApellidos("Apellido1");
+        usuario1.setContrasena("Contrasena1");
+        usuario1.setTelefono(666333221);
+        usuario1.setTipoUsuario("Normal");
         
-        sesion.save(usuarios);
+        sesion.save(usuario1);
         
         //RESERVAS
         Reservas reservas = new Reservas();
         reservas.setCodReserva(1);
-        reservas.setCodAlojamiento(1);
-        reservas.setCodUsuario(1);
+        reservas.setAlojamiento(alojamiento1);
+        reservas.setUsuario(usuario1);
         reservas.setFechaRealizada(Fechas.mostrarFechaActual());
         //reservas.setFechaEntrada(fechaEntrada);
         // reservas.setFechaSalida(fechaSalida);

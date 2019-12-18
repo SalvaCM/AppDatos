@@ -1,9 +1,13 @@
 package alojamientos.appdatosA;
 
+import java.util.HashSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.mapping.Set;
 
 @Entity
 @Table(name="tAlojamientos")
@@ -150,5 +154,6 @@ public class Alojamientos {
 		this.capacidad = i;
 	}
 	
+
 	
 }

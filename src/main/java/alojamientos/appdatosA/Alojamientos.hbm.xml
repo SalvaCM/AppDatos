@@ -4,13 +4,12 @@
 <!-- Generated 18-dic-2019 8:43:49 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="alojamientos.appdatosA.Alojamientos" table="ALOJAMIENTOS">
-        <id name="capacidad" type="int">
-            <column name="CAPACIDAD" />
+    <!-- Clave primari: id -->
+        <id name="codAlojamiento" type="int">
+            <column name="CODALOJAMIENTO" />
             <generator class="assigned" />
         </id>
-        <property name="codAlojamiento" type="int">
-            <column name="CODALOJAMIENTO" />
-        </property>
+        <!-- Atributos: -->
         <property name="nombre" type="java.lang.String">
             <column name="NOMBRE" />
         </property>
@@ -38,5 +37,9 @@
         <property name="web" type="java.lang.String">
             <column name="WEB" />
         </property>
+        <property name="capacidad" type="int">
+            <column name="CAPACIDAD" />
+        </property>
+     
     </class>
 </hibernate-mapping>

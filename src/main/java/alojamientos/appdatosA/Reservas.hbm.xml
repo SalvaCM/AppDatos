@@ -23,5 +23,6 @@
         <property name="fechaSalida" type="java.util.Date">
             <column name="FECHASALIDA" />
         </property>
+       
     </class>
 </hibernate-mapping>

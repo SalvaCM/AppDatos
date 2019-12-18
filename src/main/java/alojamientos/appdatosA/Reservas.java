@@ -1,10 +1,14 @@
 package alojamientos.appdatosA;
 
 import java.util.Date;
+import java.util.HashSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,11 +18,13 @@ public class Reservas {
 	@Column(name="cReserva")
 	private int codReserva;
 	
-	@Column(name="cCodAlojamiento")
-	private int codAlojamiento;
+	@Column(name="cAlojamiento")
+	@OneToOne
+	private Alojamientos alojamiento;
 
-	@Column(name="cCodUsuario")
-	private int codUsuario;
+	@Column(name="cUsuario")
+	@ManyToMany
+	private Usuarios usuario;
 
 	@Column(name="cFechaRealizada")
 	private Date fechaRealizada;
@@ -34,12 +40,12 @@ public class Reservas {
 	}
 
 
-	public Reservas(int codReserva, int codAlojamiento, int codUsuario, Date fechaRealizada, Date fechaEntrada,
+	public Reservas(int codReserva, Alojamientos alojamiento, Usuarios usuario, Date fechaRealizada, Date fechaEntrada,
 			Date fechaSalida) {
 		super();
 		this.codReserva = codReserva;
-		this.codAlojamiento = codAlojamiento;
-		this.codUsuario = codUsuario;
+		this.alojamiento = alojamiento;
+		this.usuario = usuario;
 		this.fechaRealizada = fechaRealizada;
 		this.fechaEntrada = fechaEntrada;
 		this.fechaSalida = fechaSalida;
@@ -56,23 +62,23 @@ public class Reservas {
 	}
 
 
-	public int getCodAlojamiento() {
-		return codAlojamiento;
+	public Alojamientos getAlojamiento() {
+		return alojamiento;
 	}
 
 
-	public void setCodAlojamiento(int i) {
-		this.codAlojamiento = i;
+	public void setAlojamiento(Alojamientos alojamiento) {
+		this.alojamiento = alojamiento;
 	}
 
 
-	public int getCodUsuario() {
-		return codUsuario;
+	public Usuarios getUsuario() {
+		return usuario;
 	}
 
 
-	public void setCodUsuario(int codUsuario) {
-		this.codUsuario = codUsuario;
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
 	}
 
 
@@ -105,5 +111,7 @@ public class Reservas {
 		this.fechaSalida = fechaSalida;
 	}
 
+
+	
 	
 }
