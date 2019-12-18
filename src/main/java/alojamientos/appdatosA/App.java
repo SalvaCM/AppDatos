@@ -36,8 +36,7 @@ public class App
         alojamientos.setCapacidad(100);
         
         sesion.save(alojamientos);
-        sesion.getTransaction().commit();
-   
+       
         //USUARIOS
         Usuarios usuarios = new Usuarios();
         usuarios.setDni("22222222W");
@@ -48,6 +47,8 @@ public class App
         usuarios.setTipoUsuario("Normal");
         
         sesion.save(usuarios);
+        
+        //se comitean los cambios y se cierra la sesión
         sesion.getTransaction().commit();
         sesionFactory.close();
         
