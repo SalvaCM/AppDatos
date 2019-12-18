@@ -16,7 +16,10 @@ public class App
     {
         System.out.println( "Cargando..............................................................." );
         
-        Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
+        CargaXml xml = new CargaXml();
+        xml.descargaXml();
+        xml.leerXml("archivos/apartamentos.xml");
+       Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
         SessionFactory sesionFactory = config.buildSessionFactory();
         Session sesion = sesionFactory.openSession();
         sesion.beginTransaction();
@@ -31,7 +34,7 @@ public class App
         alojamientos.setTelefono("666333111");
         alojamientos.setDireccion("Dirección alojamiento1");
         alojamientos.setLocalidad("Localidad1");
-        alojamientos.setEmail("email1");
+        alojamientos.setEmail("benjas2");
         alojamientos.setWeb("web1");
         alojamientos.setCapacidad(100);
         
@@ -60,7 +63,7 @@ public class App
        	sesion.save(reservas);
         //se comitean los cambios y se cierra la sesión
         sesion.getTransaction().commit();
-        sesionFactory.close();
+        sesionFactory.close(); 
         
         
         
