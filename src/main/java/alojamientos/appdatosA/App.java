@@ -16,18 +16,15 @@ public class App
 	public ArrayList<Alojamientos> listaAlojamientos = new ArrayList<Alojamientos>();
 	public App() {
 	
-		
+		int contador = 0;
+		int contador2 = 0;
 		  System.out.println( "Cargando..............................................................." );
 	        
 	        CargaXml xml = new CargaXml();
 	        xml.descargaXml();
-	        xml.leerXml("archivos/apartamentos.xml");
+	        //xml.leerXml("archivos/apartamentos.xml");
 	        
-	        listaAlojamientos= xml.guardarDatosAlojamientos("archivos/apartamentos.xml",listaAlojamientos );
-			for (int i = 0; i < listaAlojamientos.size(); i++) {
-				System.out.println(listaAlojamientos.get(i).getNombre());
-			}
-	        
+	      
 	       Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
 	        SessionFactory sesionFactory = config.buildSessionFactory();
 	        Session sesion = sesionFactory.openSession();
@@ -48,6 +45,7 @@ public class App
 //	        alojamientos.setCapacidad(100);
 //	        
 //	        sesion.save(alojamientos);
+	        listaAlojamientos= xml.guardarDatosAlojamientos("archivos/apartamentos.xml",listaAlojamientos );
 	        
 	        for (int i = 0; i < listaAlojamientos.size(); i++) {
 	        	//ALOJAMIENTOS
@@ -62,7 +60,50 @@ public class App
 	        alojamientos.setLocalidad(listaAlojamientos.get(i).getLocalidad());
 	        alojamientos.setEmail(listaAlojamientos.get(i).getEmail());
 	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
-	        alojamientos.setCapacidad(100);
+	        alojamientos.setCapacidad(listaAlojamientos.get(i).getCapacidad());
+	        
+	        sesion.save(alojamientos);
+	        contador = i;
+	        }
+	        
+	        listaAlojamientos.clear();
+	        contador++;
+	        listaAlojamientos = xml.guardarDatosAlojamientos("archivos/apartamentos-rulares.xml",listaAlojamientos );
+	        for (int i = 0; i < (listaAlojamientos.size()); i++) {
+	        	//ALOJAMIENTOS-RULARES
+	        Alojamientos alojamientos = new Alojamientos();
+	        alojamientos.setCodAlojamiento(i + contador);
+	        alojamientos.setNombre(listaAlojamientos.get(i).getNombre());
+	        alojamientos.setDescripcion(listaAlojamientos.get(i).getDescripcion());
+	        alojamientos.setTipo("Rural");
+	        alojamientos.setLocalizacion(listaAlojamientos.get(i).getLocalizacion());
+	        alojamientos.setTelefono(listaAlojamientos.get(i).getTelefono());
+	        alojamientos.setDireccion(listaAlojamientos.get(i).getDireccion());
+	        alojamientos.setLocalidad(listaAlojamientos.get(i).getLocalidad());
+	        alojamientos.setEmail(listaAlojamientos.get(i).getEmail());
+	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
+	        alojamientos.setCapacidad(listaAlojamientos.get(i).getCapacidad());
+	        
+	        sesion.save(alojamientos);
+	        contador2 = i + contador;
+	        }
+	        listaAlojamientos.clear();
+	        contador2++;
+	        listaAlojamientos = xml.guardarDatosAlojamientos("archivos/apartamentos-camping.xml",listaAlojamientos );
+	        for (int i = 0; i < (listaAlojamientos.size()); i++) {
+	        	//ALOJAMIENTOS-CAMPING
+	        Alojamientos alojamientos = new Alojamientos();
+	        alojamientos.setCodAlojamiento(i + contador2);
+	        alojamientos.setNombre(listaAlojamientos.get(i).getNombre());
+	        alojamientos.setDescripcion(listaAlojamientos.get(i).getDescripcion());
+	        alojamientos.setTipo("Camping");
+	        alojamientos.setLocalizacion(listaAlojamientos.get(i).getLocalizacion());
+	        alojamientos.setTelefono(listaAlojamientos.get(i).getTelefono());
+	        alojamientos.setDireccion(listaAlojamientos.get(i).getDireccion());
+	        alojamientos.setLocalidad(listaAlojamientos.get(i).getLocalidad());
+	        alojamientos.setEmail(listaAlojamientos.get(i).getEmail());
+	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
+	        alojamientos.setCapacidad(listaAlojamientos.get(i).getCapacidad());
 	        
 	        sesion.save(alojamientos);
 	        }

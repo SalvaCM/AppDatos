@@ -24,12 +24,13 @@ public class CargaXml {
 		
 		String url = "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/alojamiento_de_euskadi/opendata/alojamientos.xml";
 		String url1 = "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/alojamientos_rurales_euskadi/opendata/alojamientos.xml";
-        String ruta = "archivos/";
+        String url2 = "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/campings_de_euskadi/opendata/alojamientos.xml";
+		String ruta = "archivos/";
         try {
             
-            downloadUsingStream(url, ruta+"apartamentos.xml");
-            
+            downloadUsingStream(url, ruta+"apartamentos.xml");          
             downloadUsingStream(url1, ruta+"apartamentos-rulares.xml");
+            downloadUsingStream(url2,ruta+"apartamentos-camping.xml");
             
         } catch (IOException e) {
             e.printStackTrace();
@@ -91,10 +92,10 @@ public class CargaXml {
 		    }
 	}
 	
-public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<Alojamientos>listaAlojamientos) {
-		
+	public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<Alojamientos>listaAlojamientos) {
+		int contador = 0;
 		try {
-
+			
 			File fXmlFile = new File(ruta);
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -102,17 +103,15 @@ public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<A
 					
 			doc.getDocumentElement().normalize();
 
-			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
 					
 			NodeList nList = doc.getElementsByTagName("row");
-					
-			System.out.println("----------------------------");
+			
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 				
 				Node nNode = nList.item(temp);
 						
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
+				//System.out.println("\nCurrent Element :" + nNode.getNodeName());
 						
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 					
@@ -164,7 +163,7 @@ public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<A
 						alojamiento.setLocalidad("Localidad no disponibles");
 					}
 					try {
-						alojamiento.setEmail(eElement.getElementsByTagName("email").item(0).getTextContent());
+						alojamiento.setEmail(eElement.getElementsByTagName("tourismemail").item(0).getTextContent());
 						
 					}
 					catch(NullPointerException e1) {	
@@ -177,13 +176,14 @@ public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<A
 					catch(NullPointerException e1) {	
 						alojamiento.setWeb(" Web no disponibles");
 					}
-				
-					alojamiento.setCodAlojamiento(temp);
-					
-					//alojamiento.setNombre("Alba");
-					
-					//alojamiento.setWeb(eElement.getElementsByTagName("municipality").item(0).getTextContent());
-					
+					try {
+						alojamiento.setCapacidad(Integer.valueOf(eElement.getElementsByTagName("capacity").item(0).getTextContent()));
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setWeb(" Web no disponibles");
+					}
+			
 					listaAlojamientos.add(alojamiento);
 
 				}
