@@ -22,29 +22,12 @@ public class App
 	        
 	        CargaXml xml = new CargaXml();
 	        xml.descargaXml();
-	        //xml.leerXml("archivos/apartamentos.xml");
-	        
 	      
-	       Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
+	        Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
 	        SessionFactory sesionFactory = config.buildSessionFactory();
 	        Session sesion = sesionFactory.openSession();
 	        sesion.beginTransaction();
 	        
-//	        //ALOJAMIENTOS
-//	        Alojamientos alojamientos = new Alojamientos();
-//	        alojamientos.setCodAlojamiento(1);
-//	        alojamientos.setNombre("Nombre Alojamiento 1");
-//	        alojamientos.setDescripcion("Descripción 1");
-//	        alojamientos.setTipo("Tipo alojamiento1");
-//	        alojamientos.setLocalizacion("Localizacion1");
-//	        alojamientos.setTelefono("666333111");
-//	        alojamientos.setDireccion("Dirección alojamiento1");
-//	        alojamientos.setLocalidad("Localidad1");
-//	        alojamientos.setEmail("benjas2");
-//	        alojamientos.setWeb("web1");
-//	        alojamientos.setCapacidad(100);
-//	        
-//	        sesion.save(alojamientos);
 	        listaAlojamientos= xml.guardarDatosAlojamientos("archivos/apartamentos.xml",listaAlojamientos );
 	        
 	        for (int i = 0; i < listaAlojamientos.size(); i++) {
@@ -126,15 +109,17 @@ public class App
 	        reservas.setCodAlojamiento(1);
 	        reservas.setCodUsuario(1);
 	        reservas.setFechaRealizada(Fechas.mostrarFechaActual());
-	        //reservas.setFechaEntrada(fechaEntrada);
-	        // reservas.setFechaSalida(fechaSalida);
+
 	        
 	       	sesion.save(reservas);
 	        //se comitean los cambios y se cierra la sesión
 	        sesion.getTransaction().commit();
 	        sesionFactory.close(); 
 	        
-	        
+	        BBDDJSON json = new BBDDJSON();
+	        json.cargaDatosBBDDAlojamientos();
+	        json.cargaDatosBBDDReservas();
+	        json.cargaDatosBBDDUsuarios();
 	}
     public static void main( String[] args )
     {
