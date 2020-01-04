@@ -18,7 +18,7 @@ public class Reservas {
 	private int codAlojamiento;
 
 	@Column(name="cCodUsuario")
-	private int codUsuario;
+	private String codUsuario;
 
 	@Column(name="cFechaRealizada")
 	private Date fechaRealizada;
@@ -34,7 +34,7 @@ public class Reservas {
 	}
 
 
-	public Reservas(int codReserva, int codAlojamiento, int codUsuario, Date fechaRealizada, Date fechaEntrada,
+	public Reservas(int codReserva, int codAlojamiento, String codUsuario, Date fechaRealizada, Date fechaEntrada,
 			Date fechaSalida) {
 		super();
 		this.codReserva = codReserva;
@@ -66,12 +66,12 @@ public class Reservas {
 	}
 
 
-	public int getCodUsuario() {
+	public String getCodUsuario() {
 		return codUsuario;
 	}
 
 
-	public void setCodUsuario(int codUsuario) {
+	public void setCodUsuario(String codUsuario) {
 		this.codUsuario = codUsuario;
 	}
 

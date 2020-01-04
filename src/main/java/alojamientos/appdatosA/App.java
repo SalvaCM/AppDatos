@@ -107,7 +107,7 @@ public class App
 	        Reservas reservas = new Reservas();
 	        reservas.setCodReserva(1);
 	        reservas.setCodAlojamiento(1);
-	        reservas.setCodUsuario(1);
+	        reservas.setCodUsuario("22758295W");
 	        reservas.setFechaRealizada(Fechas.mostrarFechaActual());
 
 	        

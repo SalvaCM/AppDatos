@@ -19,7 +19,7 @@ public class BBDDJSON {
 		try
 		{
 		   Class.forName("com.mysql.cj.jdbc.Driver");
-		   Connection conexion = DriverManager.getConnection ("jdbc:mysql://192.168.101.24/alojamientos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root", "");
+		   Connection conexion = DriverManager.getConnection ("jdbc:mysql://192.168.0.7/alojamientos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root", "");
 		   String sql = "SELECT * FROM treservas";
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
@@ -31,7 +31,7 @@ public class BBDDJSON {
 			   Reservas res = new Reservas();
 			   res.setCodAlojamiento(rs.getInt("cCodAlojamiento"));
 			   res.setCodReserva(rs.getInt("cReserva"));
-			   res.setCodUsuario(rs.getInt("cCodUsuario"));
+			   res.setCodUsuario(rs.getString("cCodUsuario"));
 			   res.setFechaEntrada(rs.getDate("cFechaEntrada"));
 			   res.setFechaRealizada(rs.getDate("cFechaRealizada"));
 			   res.setFechaSalida(rs.getDate("cFechaSalida"));
@@ -55,7 +55,7 @@ public class BBDDJSON {
 		try
 		{
 		   Class.forName("com.mysql.cj.jdbc.Driver");
-		   Connection conexion = DriverManager.getConnection ("jdbc:mysql://192.168.101.24/alojamientos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root", "");
+		   Connection conexion = DriverManager.getConnection ("jdbc:mysql://192.168.0.7/alojamientos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root", "");
 		   String sql = "SELECT * FROM tusuarios";
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
@@ -93,7 +93,7 @@ public class BBDDJSON {
 		try
 		{
 		   Class.forName("com.mysql.cj.jdbc.Driver");
-		   Connection conexion = DriverManager.getConnection ("jdbc:mysql://192.168.101.24/alojamientos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root", "");
+		   Connection conexion = DriverManager.getConnection ("jdbc:mysql://192.168.0.7/alojamientos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root", "");
 		   String sql = "SELECT * FROM talojamientos";
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();

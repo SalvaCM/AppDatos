@@ -4,12 +4,12 @@
 <!-- Generated 18-dic-2019 8:43:49 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
     <class name="alojamientos.appdatosA.Usuarios" table="USUARIOS">
-        <id name="apellidos" type="java.lang.String">
-            <column name="APELLIDOS" />
+        <id name="dni" type="java.lang.String">
+            <column name="DNI" />
             <generator class="assigned" />
         </id>
-        <property name="dni" type="java.lang.String">
-            <column name="DNI" />
+        <property name="apellidos" type="java.lang.String">
+            <column name="APELLIDOS" />
         </property>
         <property name="nombre" type="java.lang.String">
             <column name="NOMBRE" />
