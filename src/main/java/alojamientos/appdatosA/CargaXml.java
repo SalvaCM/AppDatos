@@ -181,7 +181,21 @@ public class CargaXml {
 						
 					}
 					catch(NullPointerException e1) {	
-						alojamiento.setWeb(" Web no disponibles");
+						alojamiento.setCapacidad(0);
+					}
+					try {
+						alojamiento.setLatitud(eElement.getElementsByTagName("latwgs84").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setLatitud("Latitud no disponible");
+					}
+					try {
+						alojamiento.setLongitud(eElement.getElementsByTagName("lonwgs84").item(0).getTextContent());
+						
+					}
+					catch(NullPointerException e1) {	
+						alojamiento.setLongitud("Longitud no disponible");
 					}
 			
 					listaAlojamientos.add(alojamiento);

@@ -38,5 +38,11 @@
         <property name="web" type="java.lang.String">
             <column name="WEB" />
         </property>
+        <property name="latitud" type="java.lang.String">
+            <column name="LATITUD" />
+        </property>
+        <property name="longitud" type="java.lang.String">
+            <column name="LONGITUD" />
+        </property>
     </class>
 </hibernate-mapping>

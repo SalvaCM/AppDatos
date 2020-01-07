@@ -42,12 +42,18 @@ public class Alojamientos {
 	@Column(name="cCapacidad")
 	private int capacidad;
 	
+	@Column(name="cLatitud")
+	private String latitud;
+	
+	@Column(name="cLongitud")
+	private String longitud;
+	
 	public Alojamientos() {
 		
 	}
 
 	public Alojamientos(int codAlojamiento, String nombre, String descripcion, String tipo, String localizacion,
-			String telefono, String direccion, String localidad, String email, String web, int capacidad) {
+			String telefono, String direccion, String localidad, String email, String web, int capacidad, String latitud, String longitud) {
 		super();
 		this.codAlojamiento = codAlojamiento;
 		this.nombre = nombre;
@@ -60,6 +66,8 @@ public class Alojamientos {
 		this.email = email;
 		this.web = web;
 		this.capacidad = capacidad;
+		this.latitud = latitud;
+		this.longitud = longitud;
 	}
 
 	public int getCodAlojamiento() {
@@ -148,6 +156,22 @@ public class Alojamientos {
 
 	public void setCapacidad(int i) {
 		this.capacidad = i;
+	}
+
+	public String getLatitud() {
+		return latitud;
+	}
+
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+
+	public String getLongitud() {
+		return longitud;
+	}
+
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
 	}
 	
 	

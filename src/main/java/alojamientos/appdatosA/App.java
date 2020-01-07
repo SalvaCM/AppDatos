@@ -44,6 +44,8 @@ public class App
 	        alojamientos.setEmail(listaAlojamientos.get(i).getEmail());
 	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
 	        alojamientos.setCapacidad(listaAlojamientos.get(i).getCapacidad());
+	        alojamientos.setLatitud(listaAlojamientos.get(i).getLatitud());
+	        alojamientos.setLongitud(listaAlojamientos.get(i).getLongitud());
 	        
 	        sesion.save(alojamientos);
 	        contador = i;
@@ -66,6 +68,8 @@ public class App
 	        alojamientos.setEmail(listaAlojamientos.get(i).getEmail());
 	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
 	        alojamientos.setCapacidad(listaAlojamientos.get(i).getCapacidad());
+	        alojamientos.setLatitud(listaAlojamientos.get(i).getLatitud());
+	        alojamientos.setLongitud(listaAlojamientos.get(i).getLongitud());
 	        
 	        sesion.save(alojamientos);
 	        contador2 = i + contador;
@@ -87,6 +91,8 @@ public class App
 	        alojamientos.setEmail(listaAlojamientos.get(i).getEmail());
 	        alojamientos.setWeb(listaAlojamientos.get(i).getWeb());
 	        alojamientos.setCapacidad(listaAlojamientos.get(i).getCapacidad());
+	        alojamientos.setLatitud(listaAlojamientos.get(i).getLatitud());
+	        alojamientos.setLongitud(listaAlojamientos.get(i).getLongitud());
 	        
 	        sesion.save(alojamientos);
 	        }

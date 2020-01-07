@@ -114,6 +114,8 @@ public class BBDDJSON {
 		       al.setEmail(rs.getString("cEmail"));
 		       al.setWeb(rs.getString("cWeb"));
 		       al.setCapacidad(rs.getInt("cCapacidad"));
+		       al.setLongitud(rs.getString("cLongitud"));
+		       al.setLatitud(rs.getString("cLatitud"));
 			   
 			   Gson gson = new Gson();		    
 			   String json = gson.toJson(al);
