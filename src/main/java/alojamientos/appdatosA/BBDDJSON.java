@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import com.google.gson.Gson;
 
@@ -24,7 +27,7 @@ public class BBDDJSON {
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
 		   PrintWriter writer = new PrintWriter("archivos/reservas.json", "UTF-8");
-		   
+		   writer.println("{");
 		   
 		   while (rs.next()) {
 			   
@@ -35,12 +38,14 @@ public class BBDDJSON {
 			   res.setFechaEntrada(rs.getDate("cFechaEntrada"));
 			   res.setFechaRealizada(rs.getDate("cFechaRealizada"));
 			   res.setFechaSalida(rs.getDate("cFechaSalida"));
-			   
-			   Gson gson = new Gson();		    
+			   System.out.println(res.toString());
+			   Gson gson = new Gson();
 			   String json = gson.toJson(res);
-			   writer.println(json);
+			   writer.println(json+",");
+			   
 			   //System.out.println(json);
 		   }
+		   writer.println("}");
 		   writer.close();
 		   rs.close();
 		   stmt.close();
@@ -60,7 +65,7 @@ public class BBDDJSON {
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
 		   PrintWriter writer = new PrintWriter("archivos/usuarios.json", "UTF-8");
-		   
+		   writer.println("{");
 		   
 		   while (rs.next()) {
 			   
@@ -77,6 +82,7 @@ public class BBDDJSON {
 			   writer.println(json);
 			   //System.out.println(json);
 		   }
+		   writer.println("}");
 		   writer.close();
 		   rs.close();
 		   stmt.close();
@@ -98,7 +104,7 @@ public class BBDDJSON {
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
 		   PrintWriter writer = new PrintWriter("archivos/alojamientos.json", "UTF-8");
-		   
+		   writer.println("{");
 		   
 		   while (rs.next()) {
 			   
@@ -122,6 +128,7 @@ public class BBDDJSON {
 			   writer.println(json);
 			   //System.out.println(json);
 		   }
+		   writer.println("}");
 		   writer.close();
 		   rs.close();
 		   stmt.close();
