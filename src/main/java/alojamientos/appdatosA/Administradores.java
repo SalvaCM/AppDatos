@@ -5,8 +5,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tUsuarios")
-public class Usuarios {
+@Table(name="tAdministradores")
+public class Administradores {
 	@Id 
 	@Column(name="cDni")
 	private String dni;
@@ -23,21 +23,22 @@ public class Usuarios {
 	@Column(name="cTelefono")
 	private int telefono;
 	
-	@Column(name="cEmail")
-	private String email;
+	@Column(name="cTipoUsuario")
+	private String tipoUsuario;
 	
-	public Usuarios() {
+	
+	public Administradores() {
 		
 	}
 
-	public Usuarios(String dni, String nombre, String apellidos, String contrasena, int telefono, String email) {
+	public Administradores(String dni, String nombre, String apellidos, String contrasena, int telefono, String tipoUsuario) {
 		super();
 		this.dni = dni;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.contrasena = contrasena;
 		this.telefono = telefono;
-		this.email = email;
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	public String getDni() {
@@ -80,12 +81,12 @@ public class Usuarios {
 		this.telefono = telefono;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getTipoUsuario() {
+		return tipoUsuario;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}
 
 	

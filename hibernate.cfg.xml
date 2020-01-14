@@ -21,6 +21,7 @@
         <mapping class="alojamientos.appdatosA.Alojamientos"></mapping>
         <mapping class="alojamientos.appdatosA.Usuarios"></mapping>
         <mapping class="alojamientos.appdatosA.Reservas"></mapping>
+        <mapping class="alojamientos.appdatosA.Administradores"></mapping>
         
     </session-factory>
 </hibernate-configuration>

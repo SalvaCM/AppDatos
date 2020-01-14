@@ -75,7 +75,45 @@ public class BBDDJSON {
 			   us.setContrasena(rs.getString("cContrasena"));
 			   us.setNombre(rs.getString("cNombre"));
 			   us.setTelefono(rs.getInt("cTelefono"));
-			   us.setTipoUsuario(rs.getString("cTipoUsuario"));
+			   us.setEmail(rs.getString("cEmail"));
+			   
+			   Gson gson = new Gson();		    
+			   String json = gson.toJson(us);
+			   writer.println(json+",");
+			   //System.out.println(json);
+		   }
+		   writer.println("]");
+		   writer.close();
+		   rs.close();
+		   stmt.close();
+		   conexion.close();
+			
+		   
+		} catch (Exception e){
+		   e.printStackTrace();
+		}
+		
+	}
+	public void cargaDatosBBDDAdmin() {
+		try
+		{
+		   Class.forName("com.mysql.cj.jdbc.Driver");
+		   Connection conexion = DriverManager.getConnection ("jdbc:mysql://192.168.101.24/alojamientos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC","root", "");
+		   String sql = "SELECT * FROM tusuarios";
+		   PreparedStatement stmt = conexion.prepareStatement(sql);
+		   ResultSet rs = stmt.executeQuery();
+		   PrintWriter writer = new PrintWriter("archivos/usuarios.json", "UTF-8");
+		   writer.println("[");
+		   
+		   while (rs.next()) {
+			   
+			   Usuarios us = new Usuarios();
+			   us.setDni(rs.getString("cDni"));
+			   us.setApellidos(rs.getString("cApellidos"));
+			   us.setContrasena(rs.getString("cContrasena"));
+			   us.setNombre(rs.getString("cNombre"));
+			   us.setTelefono(rs.getInt("cTelefono"));
+			   us.setEmail(rs.getString("cEmail"));
 			   
 			   Gson gson = new Gson();		    
 			   String json = gson.toJson(us);

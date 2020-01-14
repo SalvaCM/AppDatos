@@ -105,7 +105,7 @@ public class App
 	        usuarios.setApellidos("Apellido1");
 	        usuarios.setContrasena("Contrasena1");
 	        usuarios.setTelefono(666333221);
-	        usuarios.setTipoUsuario("Normal");
+	        usuarios.setEmail("default@default.com");
 	        
 	        sesion.save(usuarios);
 	        
@@ -115,9 +115,20 @@ public class App
 	        reservas.setCodAlojamiento(1);
 	        reservas.setCodUsuario("22758295W");
 	        reservas.setFechaRealizada(Fechas.mostrarFechaActual());
-
 	        
-	       	sesion.save(reservas);
+	      	sesion.save(reservas);
+	        //ADMINISTRADORES
+	        
+	        Administradores admin = new Administradores();
+	        admin.setApellidos("21232f297a57a5a743894a0e4a801fc3");
+	        admin.setContrasena("21232f297a57a5a743894a0e4a801fc3");
+	        admin.setDni("21232f297a57a5a743894a0e4a801fc3");
+	        admin.setNombre("21232f297a57a5a743894a0e4a801fc3");
+	        admin.setTipoUsuario("admin");
+	        admin.setTelefono(123456789);
+	        
+	        sesion.save(admin);
+
 	        //se comitean los cambios y se cierra la sesión
 	        sesion.getTransaction().commit();
 	        sesionFactory.close(); 
