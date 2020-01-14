@@ -27,7 +27,7 @@ public class BBDDJSON {
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
 		   PrintWriter writer = new PrintWriter("archivos/reservas.json", "UTF-8");
-		   writer.println("{");
+		   writer.println("[");
 		   
 		   while (rs.next()) {
 			   
@@ -45,7 +45,7 @@ public class BBDDJSON {
 			   
 			   //System.out.println(json);
 		   }
-		   writer.println("}");
+		   writer.println("]");
 		   writer.close();
 		   rs.close();
 		   stmt.close();
@@ -65,7 +65,7 @@ public class BBDDJSON {
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
 		   PrintWriter writer = new PrintWriter("archivos/usuarios.json", "UTF-8");
-		   writer.println("{");
+		   writer.println("[");
 		   
 		   while (rs.next()) {
 			   
@@ -79,10 +79,10 @@ public class BBDDJSON {
 			   
 			   Gson gson = new Gson();		    
 			   String json = gson.toJson(us);
-			   writer.println(json);
+			   writer.println(json+",");
 			   //System.out.println(json);
 		   }
-		   writer.println("}");
+		   writer.println("]");
 		   writer.close();
 		   rs.close();
 		   stmt.close();
@@ -104,7 +104,7 @@ public class BBDDJSON {
 		   PreparedStatement stmt = conexion.prepareStatement(sql);
 		   ResultSet rs = stmt.executeQuery();
 		   PrintWriter writer = new PrintWriter("archivos/alojamientos.json", "UTF-8");
-		   writer.println("{");
+		   writer.println("[");
 		   
 		   while (rs.next()) {
 			   
@@ -125,10 +125,10 @@ public class BBDDJSON {
 			   
 			   Gson gson = new Gson();		    
 			   String json = gson.toJson(al);
-			   writer.println(json);
+			   writer.println(json+",");
 			   //System.out.println(json);
 		   }
-		   writer.println("}");
+		   writer.println("]");
 		   writer.close();
 		   rs.close();
 		   stmt.close();
