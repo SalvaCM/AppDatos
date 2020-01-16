@@ -2,11 +2,13 @@ package alojamientos.appdatosA;
 
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
 
+import javax.net.ssl.SSLHandshakeException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -32,8 +34,22 @@ public class CargaXml {
             downloadUsingStream(url1, ruta+"apartamentos-rulares.xml");
             downloadUsingStream(url2,ruta+"apartamentos-camping.xml");
             
-        } catch (IOException e) {
+            //por si la ruta de guardar el fichero esta mal
+        } catch(FileNotFoundException e) {
+        	
+        	System.out.println("Error : la ruta donde quieres guardar el fichero no existe");
+        	//por si da fallo con el certificado de la pagina
+        }catch (SSLHandshakeException e) {
+        	
             e.printStackTrace();
+            System.out.println("Error :  autetificacion no encontrada, por favor resive si lo tiene bien");
+            //por si el link de descarga esta mal escrita o no existe
+        } catch(UnknownHostException e1) {
+        	
+        	System.out.println("Error : enlace de descarga del fichero no encotrado");
+        	//por si da algun otro fallo de input/output generico
+        } catch( IOException e2) {
+        	System.out.println("Error : " + e2);
         }
 	}
 	
@@ -51,46 +67,7 @@ public class CargaXml {
         bis.close();
         System.out.println("Archivo descargado");
     }
-	public void leerXml(String ruta) {
-		
-		try {
-
-			File fXmlFile = new File(ruta);
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			Document doc = dBuilder.parse(fXmlFile);
-					
-			doc.getDocumentElement().normalize();
-
-			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-					
-			NodeList nList = doc.getElementsByTagName("row");
-					
-			System.out.println("----------------------------");
-
-			for (int temp = 0; temp < nList.getLength(); temp++) {
-				
-				Node nNode = nList.item(temp);
-						
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
-						
-				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-					
-					Element eElement = (Element) nNode;
-					
-					System.out.println(" Linea : " + eElement.getAttribute("num"));
-					System.out.println(" Pagina web : " + eElement.getElementsByTagName("municipality").item(0).getTextContent());
-					
-
-				}
-			}
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(e);
-		    }
-	}
+	
 	
 	public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<Alojamientos>listaAlojamientos) {
 		int contador = 0;
