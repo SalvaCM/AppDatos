@@ -3,15 +3,12 @@ package alojamientos.appdatosA;
 import java.io.BufferedInputStream;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.*;
-import java.nio.file.CopyOption;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
-
+import javax.net.ssl.SSLHandshakeException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
@@ -74,24 +71,31 @@ public class CargaXml {
 		return descargar;
 	}
 
-	public void descargaXml(String ruta,String nombre,String url) {
-		// Cambiar a final
-		// Aqui hay que hacer : Se Comprueba si existen los archivos si no se descargan ·················
-		// a archivos, si existen se descargan a temporal, ································
-		// se comparan los temporales con los existentes ······················
-		//, si son iguales se eliminan y ······························
-		// se cierra el programa, si son distintos se ejecuta hibernate .
-		// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! COMPROBAR QUE UNA TABLA
-		// EXISTE Y NO LA BORRA
+	public void descargaXml(String ruta, String nombre, String url) {
 
 		try {
 			downloadUsingStream(url, ruta + nombre);
-		} catch (IOException e) {
+
+			// por si la ruta de guardar el fichero esta mal
+		} catch (FileNotFoundException e) {
+
+			System.out.println("Error : la ruta donde quieres guardar el fichero no existe");
+			// por si da fallo con el certificado de la pagina
+		} catch (SSLHandshakeException e) {
+
 			e.printStackTrace();
-			// añadir excepciones mas especificas
+			System.out.println("Error :  autetificacion no encontrada, por favor resive si lo tiene bien");
+			// por si el link de descarga esta mal escrita o no existe
+		} catch (UnknownHostException e1) {
+
+			System.out.println("Error : enlace de descarga del fichero no encotrado");
+			// por si da algun otro fallo de input/output generico
+		} catch (IOException e2) {
+			System.out.println("Error : " + e2);
 		}
+
 	}
-	
+
 	private void downloadUsingStream(String urlStr, String file) throws IOException{
         URL url = new URL(urlStr);
         BufferedInputStream bis = new BufferedInputStream(url.openStream());
@@ -106,6 +110,7 @@ public class CargaXml {
         bis.close();
         System.out.println("Archivo descargado");
     }
+
 	public void leerXml(String ruta) {
 		
 		try {

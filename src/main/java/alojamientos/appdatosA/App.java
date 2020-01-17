@@ -2,7 +2,6 @@ package alojamientos.appdatosA;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -158,6 +157,7 @@ public class App {
 		{
 			System.out.println("La BBDD ya se encuentra actualizada -----------");
 		}
+
 	}
 
 	public static void main(String[] args) {

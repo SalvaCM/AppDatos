@@ -19,6 +19,7 @@ public class BBDDJSON {
 		
 	}
 	public void cargaDatosBBDDReservas() {
+		boolean primero = true;
 		try
 		{
 		   Class.forName("com.mysql.cj.jdbc.Driver");
@@ -30,6 +31,11 @@ public class BBDDJSON {
 		   writer.println("[");
 		   
 		   while (rs.next()) {
+			   if(primero == false) {
+				   writer.print(",");
+			   }else {
+				   primero = false;
+			   }
 			   
 			   Reservas res = new Reservas();
 			   res.setCodAlojamiento(rs.getInt("cCodAlojamiento"));
@@ -41,7 +47,7 @@ public class BBDDJSON {
 			   System.out.println(res.toString());
 			   Gson gson = new Gson();
 			   String json = gson.toJson(res);
-			   writer.println(json+",");
+			   writer.println(json);
 			   
 			   //System.out.println(json);
 		   }
@@ -57,6 +63,7 @@ public class BBDDJSON {
 		}
 	}
 	public void cargaDatosBBDDUsuarios() {
+		boolean primero = true;
 		try
 		{
 		   Class.forName("com.mysql.cj.jdbc.Driver");
@@ -68,6 +75,11 @@ public class BBDDJSON {
 		   writer.println("[");
 		   
 		   while (rs.next()) {
+			   if(primero == false) {
+				   writer.print(",");
+			   }else {
+				   primero = false;
+			   }
 			   
 			   Usuarios us = new Usuarios();
 			   us.setDni(rs.getString("cDni"));
@@ -79,7 +91,7 @@ public class BBDDJSON {
 			   
 			   Gson gson = new Gson();		    
 			   String json = gson.toJson(us);
-			   writer.println(json+",");
+			   writer.println(json);
 			   //System.out.println(json);
 		   }
 		   writer.println("]");
@@ -95,6 +107,7 @@ public class BBDDJSON {
 		
 	}
 	public void cargaDatosBBDDAdmin() {
+		boolean primero = true;
 		try
 		{
 		   Class.forName("com.mysql.cj.jdbc.Driver");
@@ -106,6 +119,12 @@ public class BBDDJSON {
 		   writer.println("[");
 		   
 		   while (rs.next()) {
+			   if(primero == false) {
+				   writer.print(",");
+			   }else {
+				   primero = false;
+			   }
+			   
 			   
 			   Usuarios us = new Usuarios();
 			   us.setDni(rs.getString("cDni"));
@@ -117,7 +136,7 @@ public class BBDDJSON {
 			   
 			   Gson gson = new Gson();		    
 			   String json = gson.toJson(us);
-			   writer.println(json+",");
+			   writer.println(json);
 			   //System.out.println(json);
 		   }
 		   writer.println("]");
@@ -133,7 +152,7 @@ public class BBDDJSON {
 		
 	}
 	public void cargaDatosBBDDAlojamientos(){
-		
+		boolean primero = true;
 		try
 		{
 		   Class.forName("com.mysql.cj.jdbc.Driver");
@@ -145,6 +164,11 @@ public class BBDDJSON {
 		   writer.println("[");
 		   
 		   while (rs.next()) {
+			   if(primero == false) {
+				   writer.print(",");
+			   }else {
+				   primero = false;
+			   }
 			   
 			   Alojamientos al = new Alojamientos();
 			   al.setCodAlojamiento(rs.getInt("cCodAlojamiento"));
@@ -163,7 +187,7 @@ public class BBDDJSON {
 			   
 			   Gson gson = new Gson();		    
 			   String json = gson.toJson(al);
-			   writer.println(json+",");
+			   writer.println(json);
 			   //System.out.println(json);
 		   }
 		   writer.println("]");
