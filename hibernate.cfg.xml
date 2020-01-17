@@ -5,16 +5,16 @@
 <hibernate-configuration>
     <session-factory>
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.username">accesoadatos</property>
+        <property name="hibernate.connection.username">grupoAlojamientos</property>
         <property name="hibernate.connection.password">123456</property>
-        <property name="hibernate.connection.url">jdbc:mysql://188.213.5.150/alojamientos?serverTimezone=UTC</property>
-
+        <!--  <property name="hibernate.connection.url">jdbc:mysql://188.213.5.150/alojamientos?serverTimezone=UTC</property> -->
+        <property name="hibernate.connection.url">jdbc:mysql://192.168.101.24/alojamientos?serverTimezone=UTC</property>
         <!-- SQL dialect -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <!-- Echo all executed SQL to stdout -->
-        <property name="show_sql">true</property>
+        <property name="show_sql">false</property>
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create</property>
+        <property name="hbm2ddl.auto">update</property>
 
         
         <!-- Mapeo de las clases  -->
