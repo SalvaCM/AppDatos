@@ -17,15 +17,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class CargaXml {
-	String url1 = "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/albergues_de_euskadi/opendata/alojamientos.xml";
-	String archivo1 = "apartamentos.xml";
-	 
-	String url2 = "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/alojamientos_rurales_euskadi/opendata/alojamientos.xml";
-	String archivo2 = "apartamentos-rulares.xml";
-	
-    String url3 = "https://opendata.euskadi.eus/contenidos/ds_recursos_turisticos/campings_de_euskadi/opendata/alojamientos.xml";
-    String archivo3 = "apartamentos-camping.xml";
-    
+
+    RecursoXml recursoXml = new RecursoXml();
 	String ruta = "archivos/";
 	String rutaTemp = "archivos/temp/";
 	
@@ -34,41 +27,28 @@ public class CargaXml {
 	public CargaXml(){
 		
 	}
-	
-	public ArrayList<Boolean> gestionXML() {
-		ArrayList<String> nombreArchivos = new ArrayList<String>();
-		ArrayList<String> urlDescarga = new ArrayList<String>();
-		ArrayList<Boolean> descargar = new ArrayList<Boolean>();
-		
-		nombreArchivos.add(archivo1);
-		nombreArchivos.add(archivo2);
-		nombreArchivos.add(archivo3);
-		
-		urlDescarga.add(url1);
-		urlDescarga.add(url2);
-		urlDescarga.add(url3);
-		
-		int index = 0;
-		for (String nombre : nombreArchivos) {
-			
-			if (gestor.exitenArchivos(nombre)) {
-				descargaXml(rutaTemp,nombre,urlDescarga.get(index));
-				if (gestor.comparar(rutaTemp + nombre, ruta + nombre)) {
-					gestor.borrarFichero(nombre,rutaTemp);
-					descargar.add(false);
+	// Gestiona la carga de archivos,los descarga a temporales, y procede a compararlos y decidir cual se elimina, y si se  descarga o no.
+	public boolean gestionXML() {
+
+	    boolean correcto=true; // con los try and catch ponemos el false si la descarga no ha ido bien
+		for (int i =0;i<recursoXml.recursos.size();i++) {		
+			if (gestor.exitenArchivos(recursoXml.recursos.get(i).archivoXml)) {
+				descargaXml(rutaTemp,recursoXml.recursos.get(i).archivoXml,recursoXml.recursos.get(i).getUrl());
+				if (gestor.comparar(rutaTemp + recursoXml.recursos.get(i).archivoXml, ruta + recursoXml.recursos.get(i).archivoXml)) {
+					gestor.borrarFichero(recursoXml.recursos.get(i).archivoXml,rutaTemp);
+					recursoXml.recursos.get(i).setDescargar(false);
 					
 				} else {
-					gestor.borrarFichero(nombre,ruta);
-					gestor.moverFichero(nombre);
-					descargar.add(true);
+					gestor.borrarFichero(recursoXml.recursos.get(i).archivoXml,ruta);
+					gestor.moverFichero(recursoXml.recursos.get(i).archivoXml);
+					recursoXml.recursos.get(i).setDescargar(true);
 				}
 			} else {
-				descargaXml(ruta,nombre,urlDescarga.get(index));
-				descargar.add(true);
+				descargaXml(ruta,recursoXml.recursos.get(i).archivoXml,recursoXml.recursos.get(i).getUrl());
+				recursoXml.recursos.get(i).setDescargar(true);
 			}
-			index++;
 		}
-		return descargar;
+		return correcto;
 	}
 
 	public void descargaXml(String ruta, String nombre, String url) {
