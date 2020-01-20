@@ -8,6 +8,9 @@ import org.hibernate.cfg.Configuration;
 
 public class App {
 	private ArrayList<Alojamientos> listaAlojamientos = new ArrayList<Alojamientos>();
+	String ruta = "archivos/";
+	public static int codigoAlojamiento = 0;
+	public static final String ANSI_GREEN  = "\u001B[32m";
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -29,13 +32,12 @@ public class App {
 
 			for (int i = 0; i < xml.recursoXml.recursos.size(); i++) {
 				if (xml.recursoXml.recursos.get(i).descargar) {
-					listaAlojamientos = xml.guardarDatosAlojamientos(xml.recursoXml.recursos.get(i).getArchivoXml(),
-							listaAlojamientos);
+					listaAlojamientos = xml.guardarDatosAlojamientos(ruta+xml.recursoXml.recursos.get(i).getArchivoXml(),listaAlojamientos);
 
 					for (int z = 0; z < listaAlojamientos.size(); z++) {
 						// ALOJAMIENTOS
 						Alojamientos alojamientos = new Alojamientos();
-						alojamientos.setCodAlojamiento(z);
+						alojamientos.setCodAlojamiento(listaAlojamientos.get(z).getCodAlojamiento());
 						alojamientos.setNombre(listaAlojamientos.get(z).getNombre());
 						alojamientos.setDescripcion(listaAlojamientos.get(z).getDescripcion());
 						alojamientos.setTipo(xml.recursoXml.recursos.get(i).getTipo());
@@ -94,10 +96,9 @@ public class App {
 			json.cargaDatosBBDDAlojamientos();
 			json.cargaDatosBBDDReservas();
 			json.cargaDatosBBDDUsuarios();
+			System.err.println("INFO : La BBDD se ha actualizado");
 		} else {
-			// tb puede ser error en la carga asi que hay que dividirlo en dos, una si todos
-			// los miembros de array dan false y otra si hay error en la descarga.
-			System.out.println("La BBDD ya se encuentra actualizada -----------");
+			System.err.println("INFO : No se encontraron campos a actualizar");
 		}
 
 	}

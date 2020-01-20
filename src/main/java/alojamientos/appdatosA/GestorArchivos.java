@@ -65,8 +65,6 @@ public class GestorArchivos {
 
 	public boolean exitenArchivos(String nombreArchivo) {
 		File archivo = new File(ruta + nombreArchivo);
-		/*File archivo2 = new File(ruta + "apartamentos-rulares.xml");
-		File archivo3 = new File(ruta + "apartamentos-camping.xml");*/
 		boolean resultado = true;
 
 		if (!archivo.exists()) {
@@ -80,7 +78,7 @@ public class GestorArchivos {
 
 		return resultado;
 	}
-	public void moverFichero(String nombreArchivo) {
+	public boolean moverFichero(String nombreArchivo) {
 
 		File origen = new File(rutaTemp+nombreArchivo);
 		File destino = new File(ruta+nombreArchivo);
@@ -98,27 +96,24 @@ public class GestorArchivos {
 
 		                 in.close();
 		                 out.close();
+		                 return true;
 		         } catch (IOException ioe){
 		                 ioe.printStackTrace();
+		                 System.out.println("Fallo al mover el fichero");
+		                 return false;
 		         }
-
-		       
-		         
 		}
 
 	public boolean borrarFichero(String nombreArchivo,String ruta1) {
 		try {
-			System.out.println(ruta1+nombreArchivo);
-			File f = new File(ruta1+nombreArchivo); // file to be delete
-			
-			if (f.delete()) // returns Boolean value
+			File f = new File(ruta1+nombreArchivo); 
+			if (f.delete()) 
 			{
-				System.out.println(f.getName() + " borrado!"); // getting and printing the file name
+				System.out.println(f.getName() + " borrado!"); 
 				return true;
 			} else {
 				System.out.println(f.getName() + " borrado ha fallado");
 				return false;
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

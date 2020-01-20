@@ -22,6 +22,7 @@ public class CargaXml {
 	String ruta = "archivos/";
 	String rutaTemp = "archivos/temp/";
 	GestorArchivos gestor = new GestorArchivos();
+	
 	public CargaXml() {
 
 	}
@@ -29,52 +30,47 @@ public class CargaXml {
 	// Gestiona la carga de archivos,los descarga a temporales, y procede a
 	// compararlos y decidir cual se elimina, y si se descarga o no.
 	public boolean gestionXML() {
-
-		boolean correcto = true; // con los try and catch ponemos el false si la descarga no ha ido bien
+		int contador=0;
+		boolean descargar = false; // con los try and catch ponemos el false si la descarga no ha ido bien
 		for (int i = 0; i < recursoXml.recursos.size(); i++) {
 			if (gestor.exitenArchivos(recursoXml.recursos.get(i).archivoXml)) {
 				descargaXml(rutaTemp, recursoXml.recursos.get(i).archivoXml, recursoXml.recursos.get(i).getUrl());
-				if (gestor.comparar(rutaTemp + recursoXml.recursos.get(i).archivoXml,
-						ruta + recursoXml.recursos.get(i).archivoXml)) {
+				
+				if (gestor.comparar(rutaTemp + recursoXml.recursos.get(i).archivoXml,ruta + recursoXml.recursos.get(i).archivoXml)) {
+					
 					gestor.borrarFichero(recursoXml.recursos.get(i).archivoXml, rutaTemp);
 					recursoXml.recursos.get(i).setDescargar(false);
-
 				} else {
 					gestor.borrarFichero(recursoXml.recursos.get(i).archivoXml, ruta);
 					gestor.moverFichero(recursoXml.recursos.get(i).archivoXml);
 					recursoXml.recursos.get(i).setDescargar(true);
+					contador++;
 				}
 			} else {
 				descargaXml(ruta, recursoXml.recursos.get(i).archivoXml, recursoXml.recursos.get(i).getUrl());
 				recursoXml.recursos.get(i).setDescargar(true);
+				contador++;
 			}
 		}
-		return correcto;
+		if (contador>0) {
+			descargar = true;
+		}
+		return descargar;
 	}
 
 	public void descargaXml(String ruta, String nombre, String url) {
 
 		try {
 			downloadUsingStream(url, ruta + nombre);
-
-			// por si la ruta de guardar el fichero esta mal
-		} catch (FileNotFoundException e) {
-
+		} catch (FileNotFoundException e) { // por si la ruta de guardar el fichero esta mal
 			System.out.println("Error : la ruta donde quieres guardar el fichero no existe");
-			// por si da fallo con el certificado de la pagina
-		} catch (SSLHandshakeException e) {
-
-			e.printStackTrace();
+		} catch (SSLHandshakeException e) {// por si da fallo con el certificado de la pagina
 			System.out.println("Error :  autetificacion no encontrada, por favor resive si lo tiene bien");
-			// por si el link de descarga esta mal escrita o no existe
-		} catch (UnknownHostException e1) {
-
-			System.out.println("Error : enlace de descarga del fichero no encotrado");
-			// por si da algun otro fallo de input/output generico
+		} catch (UnknownHostException e1) {	// por si el link de descarga esta mal escrita o no existe
+			System.out.println("Error : enlace de descarga del fichero no encotrado");// por si da algun otro fallo de input/output generico
 		} catch (IOException e2) {
 			System.out.println("Error : " + e2);
 		}
-
 	}
 
 	private void downloadUsingStream(String urlStr, String file) throws IOException {
@@ -99,32 +95,16 @@ public class CargaXml {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			Document doc = dBuilder.parse(fXmlFile);
-
-			doc.getDocumentElement().normalize();
-
-			System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
 			NodeList nList = doc.getElementsByTagName("row");
-
-			System.out.println("----------------------------");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
 
 				Node nNode = nList.item(temp);
 
-				System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
 					Element eElement = (Element) nNode;
-
-					System.out.println(" Linea : " + eElement.getAttribute("num"));
-					System.out.println(
-							" Pagina web : " + eElement.getElementsByTagName("municipality").item(0).getTextContent());
-
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
@@ -141,7 +121,6 @@ public class CargaXml {
 			Document doc = dBuilder.parse(fXmlFile);
 
 			doc.getDocumentElement().normalize();
-
 			NodeList nList = doc.getElementsByTagName("row");
 
 			for (int temp = 0; temp < nList.getLength(); temp++) {
@@ -154,7 +133,7 @@ public class CargaXml {
 
 					Element eElement = (Element) nNode;
 					Alojamientos alojamiento = new Alojamientos();
-					alojamiento.setCodAlojamiento(temp);
+					alojamiento.setCodAlojamiento(App.codigoAlojamiento);
 					try {
 						alojamiento.setDescripcion(
 								eElement.getElementsByTagName("turismdescription").item(0).getTextContent());
@@ -225,9 +204,12 @@ public class CargaXml {
 					} catch (NullPointerException e1) {
 						alojamiento.setLongitud("Longitud no disponible");
 					}
-
+					System.out.println(App.codigoAlojamiento);
+					App.codigoAlojamiento++;
 					listaAlojamientos.add(alojamiento);
-
+					
+					
+					
 				}
 			}
 
