@@ -3,20 +3,35 @@ package alojamientos.appdatosA;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Test;
 
 public class gestorTest  {
 	GestorArchivos gestor = new GestorArchivos();
+	CargaXml xml = new CargaXml();
+	DatosXml datos = new DatosXml();
 	@Test
-	public void borrarFicheroTest() {
-		boolean borrado,noBorrado;
-		borrado = gestor.borrarFichero("apartamentos.xml","archivos/");
-		noBorrado = gestor.borrarFichero("inexistente.xml","archivos/");
-		
+	public void borrarFicheroTest() { // Probar con before y after
+		boolean borrado;
+		borrado = gestor.borrarFichero(datos.getArchivo1(),"archivos/");
 		assertTrue(borrado);
+
+	}
+	@Test
+	public void borrarFicheroTest2() { // Probar con before y after
+		boolean noBorrado;
+		noBorrado = gestor.borrarFichero("Inexistente","archivos/");
+
 		assertFalse(noBorrado);
 		
 	}
+	@After
+	public void borrarFicheroTest3() // Probar con before y after
+	{
+		xml.descargaXml("archivos/", datos.getArchivo1(), datos.getUrl1());
+	}
+/*
 	@Test
 	public void comparar() {
 		boolean iguales1,iguales2,iguales3;
@@ -46,5 +61,5 @@ public class gestorTest  {
 		
 		assertTrue(movido1);
 		assertFalse(movido2);
-	}
+	}*/
 }
