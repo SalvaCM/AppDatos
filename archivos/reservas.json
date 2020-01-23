@@ -1,8 +1,6 @@
 [
-{"codReserva":3,"codAlojamiento":1208,"codUsuario":"25724442T","fechaRealizada":"ene 17, 2020","fechaEntrada":"ene 20, 2020","fechaSalida":"ene 22, 2020"}
-,{"codReserva":2,"codAlojamiento":78,"codUsuario":"22758295W","fechaRealizada":"ene 17, 2020","fechaEntrada":"ene 1, 0001","fechaSalida":"ene 18, 2020"}
-,{"codReserva":4,"codAlojamiento":42,"codUsuario":"22758295W","fechaRealizada":"ene 17, 2020","fechaEntrada":"ene 1, 0001","fechaSalida":"ene 23, 2020"}
-,{"codReserva":5,"codAlojamiento":92,"codUsuario":"22758295W","fechaRealizada":"ene 17, 2020","fechaEntrada":"ene 1, 0001","fechaSalida":"ene 21, 2020"}
-,{"codReserva":6,"codAlojamiento":8,"codUsuario":"33333333A","fechaRealizada":"ene 17, 2020","fechaEntrada":"ene 19, 2020","fechaSalida":"ene 18, 2020"}
-,{"codReserva":1,"codAlojamiento":1,"codUsuario":"22758295W","fechaRealizada":"ene 20, 2020"}
+{"codReserva":1,"codAlojamiento":1,"codUsuario":"22758295W","fechaRealizada":"ene 23, 2020"}
+,{"codReserva":3,"codAlojamiento":15,"codUsuario":"22221111W","fechaRealizada":"ene 22, 2020","fechaEntrada":"ene 24, 2020","fechaSalida":"ene 29, 2020"}
+,{"codReserva":4,"codAlojamiento":15,"codUsuario":"22221111W","fechaRealizada":"ene 22, 2020","fechaEntrada":"ene 27, 2020","fechaSalida":"ene 30, 2020"}
+,{"codReserva":5,"codAlojamiento":1,"codUsuario":"22758295W","fechaRealizada":"ene 24, 2020","fechaEntrada":"ene 23, 2020","fechaSalida":"ene 25, 2020"}
 ]

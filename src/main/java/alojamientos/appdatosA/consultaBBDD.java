@@ -23,11 +23,6 @@ public class consultaBBDD {
         SessionFactory sesionFactory = config.buildSessionFactory();
         Session sesion = sesionFactory.openSession();
         List<Alojamientos> usuario = loadAllData(Alojamientos.class, sesion);
-        System.out.println("Usuarios : ");
-        for (int i = 0; i < usuario.size(); i++) {
-        	System.out.println(i + "- " + usuario.get(i).getNombre());
-        }
-       
         sesion.close();
         
 	}
@@ -72,4 +67,5 @@ public class consultaBBDD {
         sesion.getTransaction().commit();
 		sesion.close();
 	}
+
 }

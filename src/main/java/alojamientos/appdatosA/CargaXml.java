@@ -87,7 +87,7 @@ public class CargaXml {
 		System.out.println("Archivo descargado");
 	}
 
-	public void leerXml(String ruta) {
+	public boolean leerXml(String ruta) {
 
 		try {
 
@@ -108,7 +108,9 @@ public class CargaXml {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e);
+			return false;
 		}
+		return true;
 	}
 
 	public ArrayList<Alojamientos> guardarDatosAlojamientos(String ruta, ArrayList<Alojamientos> listaAlojamientos) {

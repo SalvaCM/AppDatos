@@ -1,10 +1,5 @@
 [
 {"dni":"22222222W","nombre":"Nombre1","apellidos":"Apellido1","contrasena":"Contrasena1","telefono":666333221,"email":"default@default.com"}
-,{"dni":"11111111W","nombre":"juan","apellidos":"juan","contrasena":"44f878afe53efc66b76772bd845eb65944ed8232","telefono":111111111,"email":"EMail@gmail.com"}
 ,{"dni":"22758295W","nombre":"Alba","apellidos":"Rodríguez","contrasena":"7110eda4d09e062aa5e4a390b0a572ac0d2c0220","telefono":666666222,"email":"alba.rodriguezsa@elorrieta-errekemari.com"}
 ,{"dni":"22221111W","nombre":"juan","apellidos":"juan","contrasena":"44f878afe53efc66b76772bd845eb65944ed8232","telefono":111222333,"email":"EMail@gmail.com"}
-,{"dni":"33333333E","nombre":"juan","apellidos":"juan","contrasena":"44f878afe53efc66b76772bd845eb65944ed8232","telefono":111222333,"email":"EMail@gmail.com"}
-,{"dni":"25724442T","nombre":"salva","apellidos":"cm","contrasena":"d033e22ae348aeb5660fc2140aec35850c4da997","telefono":123456789,"email":"salva@salva.me"}
-,{"dni":"33333333A","nombre":"juan","apellidos":"juan","contrasena":"44f878afe53efc66b76772bd845eb65944ed8232","telefono":333333333,"email":"EMail@gmail.com"}
-,{"dni":"78787878G","nombre":"juan","apellidos":"juan","contrasena":"44f878afe53efc66b76772bd845eb65944ed8232","telefono":988868868,"email":"EMail@gmail.com"}
 ]
