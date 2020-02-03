@@ -1,9 +1,8 @@
 package alojamientos.appdatosA;
 
 public class App {
-	public static int codigoAlojamiento = 0;
 	public static final String ANSI_GREEN  = "\u001B[32m";
-	public CargaXml xml = new CargaXml();
+
 
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
@@ -12,13 +11,9 @@ public class App {
 	}
 
 	public App() {
-		boolean descargar;
-		System.out.println("Cargando........................");
-		
-		descargar = xml.gestionXML(); // Esto carga los xml comparando si estan o no!
-		if (descargar) {
-			IniciarSession iniciar = new IniciarSession();
-			boolean correcto = iniciar.Iniciar(xml);
+		System.out.println("# Iniciando App #");
+			IniciarSession iniciarSesion = new IniciarSession();
+			boolean correcto = iniciarSesion.Iniciar();
 			if (correcto)
 			{
 				System.err.println("INFO : La BBDD se ha actualizado");
@@ -27,10 +22,5 @@ public class App {
 			{
 				System.err.println("INFO : Error al actualizar la BD");
 			}
-		} else {
-			System.err.println("INFO : No se encontraron campos a actualizar");
-		}
-
 	}
-
 }

@@ -17,49 +17,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.Element;
 
 public class CargaXml {
-
-	RecursoXml recursoXml = new RecursoXml();
+	int codigoAlojamiento = 0;
 	String ruta = "archivos/";
 	String rutaTemp = "archivos/temp/";
 	GestorArchivos gestor = new GestorArchivos();
 	
 	public CargaXml() {
-
 	}
-	
-	// Gestiona la carga de archivos,los descarga a temporales, y procede a
-	// compararlos y decidir cual se elimina, y si se descarga o no.
-	public boolean gestionXML() {
-		int contador=0;
-		boolean descargar = false; // con los try and catch ponemos el false si la descarga no ha ido bien
-		for (int i = 0; i < recursoXml.recursos.size(); i++) {
-			if (gestor.exitenArchivos(recursoXml.recursos.get(i).archivoXml)) {
-				descargaXml(rutaTemp, recursoXml.recursos.get(i).archivoXml, recursoXml.recursos.get(i).getUrl());
-				
-				if (gestor.comparar(rutaTemp + recursoXml.recursos.get(i).archivoXml,ruta + recursoXml.recursos.get(i).archivoXml)) {
-					
-					gestor.borrarFichero(recursoXml.recursos.get(i).archivoXml, rutaTemp);
-					recursoXml.recursos.get(i).setDescargar(false);
-				} else {
-					gestor.borrarFichero(recursoXml.recursos.get(i).archivoXml, ruta);
-					gestor.moverFichero(recursoXml.recursos.get(i).archivoXml);
-					recursoXml.recursos.get(i).setDescargar(true);
-					contador++;
-				}
-			} else {
-				descargaXml(ruta, recursoXml.recursos.get(i).archivoXml, recursoXml.recursos.get(i).getUrl());
-				recursoXml.recursos.get(i).setDescargar(true);
-				contador++;
-			}
-		}
-		if (contador>0) {
-			descargar = true;
-		}
-		return descargar;
-	}
-
 	public void descargaXml(String ruta, String nombre, String url) {
-
 		try {
 			downloadUsingStream(url, ruta + nombre);
 		} catch (FileNotFoundException e) { // por si la ruta de guardar el fichero esta mal
@@ -136,7 +101,7 @@ public class CargaXml {
 
 					Element eElement = (Element) nNode;
 					Alojamientos alojamiento = new Alojamientos();
-					alojamiento.setCodAlojamiento(App.codigoAlojamiento);
+					alojamiento.setCodAlojamiento(codigoAlojamiento);
 					try {
 						alojamiento.setDescripcion(
 								eElement.getElementsByTagName("turismdescription").item(0).getTextContent());
@@ -151,68 +116,10 @@ public class CargaXml {
 
 						alojamiento.setNombre("Nombre no disponible");
 					}
-					try {
-						alojamiento.setLocalizacion(
-								eElement.getElementsByTagName("municipality").item(0).getTextContent());
 
-					} catch (NullPointerException e1) {
-						alojamiento.setLocalizacion("Localizacion no disponible");
-					}
-					try {
-						alojamiento.setTelefono(eElement.getElementsByTagName("phone").item(0).getTextContent());
-					} catch (NullPointerException e1) {
-						alojamiento.setTelefono("Telefono no disponible");
-					}
-					try {
-
-						alojamiento.setDireccion(eElement.getElementsByTagName("address").item(0).getTextContent());
-					} catch (NullPointerException e1) {
-
-						alojamiento.setDireccion("Direccion no disponible");
-					}
-					try {
-						alojamiento.setLocalidad(eElement.getElementsByTagName("territory").item(0).getTextContent());
-
-					} catch (NullPointerException e1) {
-						alojamiento.setLocalidad("Localidad no disponibles");
-					}
-					try {
-						alojamiento.setEmail(eElement.getElementsByTagName("tourismemail").item(0).getTextContent());
-
-					} catch (NullPointerException e1) {
-						alojamiento.setEmail(" Correo no disponible");
-					}
-					try {
-						alojamiento.setWeb(eElement.getElementsByTagName("web").item(0).getTextContent());
-
-					} catch (NullPointerException e1) {
-						alojamiento.setWeb(" Web no disponibles");
-					}
-					try {
-						alojamiento.setCapacidad(
-								Integer.valueOf(eElement.getElementsByTagName("capacity").item(0).getTextContent()));
-
-					} catch (NullPointerException e1) {
-						alojamiento.setCapacidad(0);
-					}
-					try {
-						alojamiento.setLatitud(eElement.getElementsByTagName("latwgs84").item(0).getTextContent());
-
-					} catch (NullPointerException e1) {
-						alojamiento.setLatitud("Latitud no disponible");
-					}
-					try {
-						alojamiento.setLongitud(eElement.getElementsByTagName("lonwgs84").item(0).getTextContent());
-
-					} catch (NullPointerException e1) {
-						alojamiento.setLongitud("Longitud no disponible");
-					}
-					System.out.println(App.codigoAlojamiento);
-					App.codigoAlojamiento++;
+					System.out.println(codigoAlojamiento);
+					codigoAlojamiento++;
 					listaAlojamientos.add(alojamiento);
-					
-					
-					
 				}
 			}
 

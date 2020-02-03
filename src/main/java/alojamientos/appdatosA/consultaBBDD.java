@@ -16,15 +16,17 @@ public class consultaBBDD {
 		
 	}
 	
-	public void sacarUsuarios() {
+	public void sacarAlojamientos() {
 		
-		Usuarios usu = new Usuarios();
 		Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
         SessionFactory sesionFactory = config.buildSessionFactory();
         Session sesion = sesionFactory.openSession();
-        List<Alojamientos> usuario = loadAllData(Alojamientos.class, sesion);
+        List<Alojamientos> alojamientos = loadAllData(Alojamientos.class, sesion);
         sesion.close();
-        
+        for (int i =0;i<alojamientos.size();i++)
+        {
+        	alojamientos.get(i).toString();
+        }
 	}
 	private static <T> List<T> loadAllData(Class<T> type, Session session) {
 	    CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -33,7 +35,7 @@ public class consultaBBDD {
 	    List<T> data = session.createQuery(criteria).getResultList();
 	    return data;
 	  }
-	
+	/*
 	public void actualizarUsuarios() {
 		
 		Configuration config = new Configuration().configure(new File("hibernate.cfg.xml"));
@@ -66,6 +68,6 @@ public class consultaBBDD {
         sesion.delete(usu);
         sesion.getTransaction().commit();
 		sesion.close();
-	}
+	}*/
 
 }
