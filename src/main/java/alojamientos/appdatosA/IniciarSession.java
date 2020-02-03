@@ -21,14 +21,11 @@ public class IniciarSession {
 			listaAlojamientos = cargaXml.guardarDatosAlojamientos(ruta, listaAlojamientos);
 
 			for (int z = 0; z < listaAlojamientos.size(); z++) {
-				// ALOJAMIENTOS
 				Alojamientos alojamientos = new Alojamientos();
 				alojamientos.setCodAlojamiento(listaAlojamientos.get(z).getCodAlojamiento());
 				alojamientos.setNombre(listaAlojamientos.get(z).getNombre());
 				alojamientos.setDescripcion(listaAlojamientos.get(z).getDescripcion());
-
 				session.saveOrUpdate(alojamientos);
-
 			}
 			listaAlojamientos.clear();
 			session.getTransaction().commit();

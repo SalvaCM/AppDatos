@@ -1,48 +1,21 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Generated 18-dic-2019 8:43:49 by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping>
-    <class name="alojamientos.appdatosA.Alojamientos" table="ALOJAMIENTOS">
-        <id name="capacidad" type="int">
-            <column name="CAPACIDAD" />
-            <generator class="assigned" />
-        </id>
-        <property name="codAlojamiento" type="int">
-            <column name="CODALOJAMIENTO" />
-        </property>
-        <property name="nombre" type="java.lang.String">
-            <column name="NOMBRE" />
-        </property>
-        <property name="descripcion" type="java.lang.String">
-            <column name="DESCRIPCION" />
-        </property>
-        <property name="tipo" type="java.lang.String">
-            <column name="TIPO" />
-        </property>
-        <property name="localizacion" type="java.lang.String">
-            <column name="LOCALIZACION" />
-        </property>
-        <property name="telefono" type="java.lang.String">
-            <column name="TELEFONO" />
-        </property>
-        <property name="direccion" type="java.lang.String">
-            <column name="DIRECCION" />
-        </property>
-        <property name="localidad" type="java.lang.String">
-            <column name="LOCALIDAD" />
-        </property>
-        <property name="email" type="java.lang.String">
-            <column name="EMAIL" />
-        </property>
-        <property name="web" type="java.lang.String">
-            <column name="WEB" />
-        </property>
-        <property name="latitud" type="java.lang.String">
-            <column name="LATITUD" />
-        </property>
-        <property name="longitud" type="java.lang.String">
-            <column name="LONGITUD" />
-        </property>
-    </class>
+ <class name="alojamientos.appdatosA.Alojamientos" table="ALOJAMIENTOS">
+  <id name="capacidad" type="int">
+   <column name="CAPACIDAD"/>
+   <generator class="assigned"/>
+  </id>
+  <property generated="never" lazy="false" name="codAlojamiento" type="int">
+   <column name="CODALOJAMIENTO"/>
+  </property>
+  <property generated="never" lazy="false" name="nombre" type="java.lang.String">
+   <column name="NOMBRE"/>
+  </property>
+  <property generated="never" lazy="false" name="descripcion" type="java.lang.String">
+   <column name="DESCRIPCION"/>
+  </property>
+ </class>
 </hibernate-mapping>
