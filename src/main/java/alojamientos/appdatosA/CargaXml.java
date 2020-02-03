@@ -102,6 +102,7 @@ public class CargaXml {
 				Node nNode = nList.item(temp);
 
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+					@SuppressWarnings("unused")
 					Element eElement = (Element) nNode;
 				}
 			}
