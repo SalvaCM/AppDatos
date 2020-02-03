@@ -1,27 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE hibernate-configuration PUBLIC
-		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+                                         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.username">grupoAlojamientos</property>
-        <property name="hibernate.connection.password">123456</property>
-        <!--  <property name="hibernate.connection.url">jdbc:mysql://188.213.5.150/alojamientos?serverTimezone=UTC</property> -->
-        <property name="hibernate.connection.url">jdbc:mysql://192.168.101.24/alojamientos?serverTimezone=UTC</property>
-        <!-- SQL dialect -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <!-- Echo all executed SQL to stdout -->
-        <property name="show_sql">false</property>
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">update</property>
-
-        
-        <!-- Mapeo de las clases  -->
-        <mapping class="alojamientos.appdatosA.Alojamientos"></mapping>
-        <mapping class="alojamientos.appdatosA.Usuarios"></mapping>
-        <mapping class="alojamientos.appdatosA.Reservas"></mapping>
-        <mapping class="alojamientos.appdatosA.Administradores"></mapping>
-        
-    </session-factory>
+ <session-factory name="">
+  <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+  <property name="hibernate.connection.username">salva</property>
+  <property name="hibernate.connection.password">123456</property>
+  <!--  <property name="hibernate.connection.url">jdbc:mysql://188.213.5.150/alojamientos?serverTimezone=UTC</property> -->
+  <property name="hibernate.connection.url">jdbc:mysql://localhost/alojamientos?serverTimezone=UTC</property>
+  <!-- SQL dialect -->
+  <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+  <!-- Echo all executed SQL to stdout -->
+  <property name="show_sql">false</property>
+  <!-- Drop and re-create the database schema on startup -->
+  <property name="hbm2ddl.auto">update</property>
+  <!-- Mapeo de las clases  -->
+  <mapping class="alojamientos.appdatosA.Alojamientos"/>
+ </session-factory>
 </hibernate-configuration>
